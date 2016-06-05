@@ -22,6 +22,10 @@ tunes(file_path: "songs/Rock1.mp3")
 tunes(directory: "songs/")
 ```
 
+<img src="assets/FastfileScreenshot.png" width="150" />
+<img src="assets/FilesScreenshot.png" width="150" />
+<img src="assets/OutputScreenshot.png" width="150" />
+
 ## Example
 
 Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
