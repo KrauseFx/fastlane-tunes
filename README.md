@@ -15,8 +15,16 @@ fastlane add_plugin tunes
 Play music using fastlane, because you can.
 
 ```ruby
-tunes(file_path: '/Library/Audio/Apple Loops/Apple/01 Hip Hop/City Lights Beat.caf')
+# Play a specific song
+tunes(file_path: "songs/Rock1.mp3")
+
+# Play all mp3s from a specific directory
+tunes(directory: "songs/")
 ```
+
+<img src="assets/FastfileScreenshot.png" width="550" />
+<img src="assets/FilesScreenshot.png" width="550" />
+<img src="assets/OutputScreenshot.png" width="550" />
 
 ## Example
 

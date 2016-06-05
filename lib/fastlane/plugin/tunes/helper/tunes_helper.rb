@@ -1,11 +1,13 @@
 module Fastlane
   module Helper
     class TunesHelper
-      # class methods that you define here become available in your action
-      # as `Helper::TunesHelper.your_method`
-      #
-      def self.show_message
-        UI.message("Hello from the tunes plugin helper!")
+      def self.print_audio_information(path)
+        UI.message "Playing song '#{path}'"
+        duration = `afinfo songs/Classic1.mp3 | grep "duration"`.match(/duration: ([\d\.]+)/)
+        duration = duration[1].to_i
+        UI.message "Song duration #{duration} seconds"
+      rescue => ex
+        UI.error(ex) # we don't want this to fail the build
       end
     end
   end
