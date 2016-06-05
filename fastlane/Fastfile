@@ -1,3 +1,3 @@
 lane :test do
-  tunes(file_path: '/Library/Audio/Apple Loops/Apple/01 Hip Hop/City Lights Beat.caf')
+  tunes(spotify_song: 'eye of the tiger')
 end
