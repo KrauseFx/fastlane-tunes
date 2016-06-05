@@ -22,9 +22,9 @@ tunes(file_path: "songs/Rock1.mp3")
 tunes(directory: "songs/")
 ```
 
-<img src="assets/FastfileScreenshot.png" width="150" />
-<img src="assets/FilesScreenshot.png" width="150" />
-<img src="assets/OutputScreenshot.png" width="150" />
+<img src="assets/FastfileScreenshot.png" width="550" />
+<img src="assets/FilesScreenshot.png" width="550" />
+<img src="assets/OutputScreenshot.png" width="550" />
 
 ## Example
 
