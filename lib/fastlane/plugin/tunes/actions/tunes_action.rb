@@ -4,20 +4,31 @@ module Fastlane
     class TunesAction < Action
       def self.run(params)
         if params[:file_path]
-          play_song(params[:file_path])
+          play_song(params[:file_path], params[:background])
         elsif params[:directory]
           UI.message("Playing all songs from directory '#{params[:directory]}'")
           Dir[File.join(params[:directory], "*.{mp3,aac,adts,ac3,aif,aiff,aifc,caf,mp4,m4a,snd,au,sd2,wav}")].each do |current|
-            play_song(current)
+            # on directory mode no background sound
+            play_song(current, false)
           end
         else
           UI.user_error!("Please provide either a file_path or a directory")
         end
       end
 
-      def self.play_song(path)
+      def self.play_song(path, background)
         Helper::TunesHelper.print_audio_information(path)
-        sh "afplay #{path.shellescape}"
+        if background
+          Thread.new do
+            sh "afplay #{path.shellescape}"
+          end
+          at_exit do
+            `killall -9 afplay 2>&1`
+            exit
+          end
+        else
+          sh "afplay #{path.shellescape}"
+        end
       end
 
       def self.description
@@ -49,13 +60,18 @@ module Fastlane
                                       type: String,
                                       verify_block: proc do |value|
                                         UI.user_error!("Couldn't find directory at path '#{value}'") unless File.directory?(value)
-                                      end)
+                                      end),
+          FastlaneCore::ConfigItem.new(key: :background,
+                                  env_name: "TUNES_BACKGROUND",
+                               description: "Play sound in background",
+                                  is_string: false,
+                                  optional: true)
 
         ]
       end
 
       def self.is_supported?(platform)
-        [:ios, :mac, :android, :caros, :rocketos, :napos].include?(platform)
+        %i[ios mac android caros rocketos napos].include?(platform)
       end
     end
   end

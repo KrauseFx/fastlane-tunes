@@ -1,3 +1,9 @@
 lane :test do
   tunes(file_path: '/Library/Audio/Apple Loops/Apple/01 Hip Hop/City Lights Beat.caf')
 end
+
+lane :test_background do
+  tunes(file_path: '/Library/Audio/Apple Loops/Apple/01 Hip Hop/City Lights Beat.caf', background: true)
+  UI.success "some building process"
+  sleep 5
+end
